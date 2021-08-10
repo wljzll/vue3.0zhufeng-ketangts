@@ -1,7 +1,7 @@
-import { CATEGORY_TYPES, IHomeState } from "@/typings/home";
+import { CATEGORY_TYPES, IHomeState } from "@/typings/home"; // 导入接口和枚举
 import { Module } from "vuex";
 import { IGlobalState } from "..";
-
+import * as Types from '../actions-types'; // 导入action-types
 
 const state: IHomeState = {
     currentCategory: CATEGORY_TYPES.ALL,
@@ -19,5 +19,10 @@ const state: IHomeState = {
 const home: Module<IHomeState, IGlobalState> = {
     namespaced: true,
     state,
+    mutations: {
+      [Types.SET_CATEGORY](state, payload:CATEGORY_TYPES) {
+         state.currentCategory = payload;
+      }
+    }
 }
 export default home;
